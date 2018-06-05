@@ -14,4 +14,4 @@ I also provide statistical advice to colleagues, and develop custom software for
 
 I have extensive experience with computational software and hardware, and am able to resolve any issue (eventually). I have personally built and administrated countless machines, distributed or local.
 
-The most recent version of my CV is available [here](/assets/AMCV.pdf]).
+If you have any questions, or want to know some really good self-deprecative jokes, feel free to email me; check the contact section!
