@@ -12,5 +12,5 @@ University of Glasgow\\
 Glasgow \\
 G12 8QQ
 
-0141 330 6222
+0141 330 6222\\
 {{ site.email }}
