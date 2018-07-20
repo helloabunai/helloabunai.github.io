@@ -10,7 +10,7 @@ In my current position I am leading the development of software to automatically
 
 I have a reputation for excellence from colleagues with both biological and/or computational backgrounds, and consistently contribute to foundational and architectural design decisions for our own, and other applications developed within the University of Glasgow.
 
-### Skills and sTUfF
+# Skills and sTUfF
 ## Expert
 Python, Pandas, Numpy, R, Git, Bash/ZSH, Linux, LaTeX, Data Visualisation, x86 Hardware
 ## Experienced
