@@ -6,11 +6,9 @@ permalink: /contact/
 
 
 Alastair Maxwell\\
-School of Medical and Veterinary Life Sciences\\
-Davidson Building\\
-University of Glasgow\\
-Glasgow \\
-G12 8QQ
+Genevia Technologies\\
+H&ameenkatu 14 C 33\\
+33100 Tampere\\
+Suomi Finland\\
 
-0141 330 6222\\
 {{ site.email }}
