@@ -7,8 +7,8 @@ permalink: /contact/
 
 Alastair Maxwell\\
 Genevia Technologies\\
-H&ameenkatu 14 C 33\\
+Hameenkatu 14 C 33\\
 33100 Tampere\\
-Suomi Finland\\
+Suomi Finland\
 
 {{ site.email }}
