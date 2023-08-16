@@ -6,8 +6,8 @@ permalink: /contact/
 
 
 Alastair Maxwell\\
-Genevia Technologies\\
-Hameenkatu 14 C 33\\
+Futurice Oy\\
+Kelloportinkatu 1 D 5\\
 33100 Tampere\\
 Suomi Finland\
 
