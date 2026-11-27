@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>volvo-bifrost login</title>
+    <!--
+        OAuth redirect target for volvo-bifrost (https://github.com/helloabunai/volvo-bifrost).
+        Volvo sends the browser here with ?code=... after login; this page shows the code so it can be
+        pasted into the service. Standalone on purpose: no Jekyll front matter, theme, or external requests.
+    -->
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #fafafa;
+            --fg: #1a1a1a;
+            --muted: #666;
+            --box: #fff;
+            --border: #ddd;
+            --accent: #1c6bba;
+            --error: #b3261e;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #141414;
+                --fg: #eee;
+                --muted: #9a9a9a;
+                --box: #1f1f1f;
+                --border: #333;
+                --accent: #4a8fd6;
+                --error: #f2867d;
+            }
+        }
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        main { max-width: 36rem; margin: 0 auto; padding: 3rem 1rem; }
+        h1 { font-size: 1.4rem; margin: 0 0 1rem; }
+        p { margin: 0 0 1rem; }
+        .muted { color: var(--muted); font-size: 0.9rem; }
+        .error { color: var(--error); }
+        .code { display: flex; gap: 0.5rem; margin: 1rem 0; }
+        .code output {
+            flex: 1;
+            min-width: 0;
+            padding: 0.75rem;
+            background: var(--box);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font: 1rem ui-monospace, SFMono-Regular, Menlo, monospace;
+            word-break: break-all;
+            user-select: all;
+        }
+        button {
+            padding: 0 1rem;
+            border: 0;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font: inherit;
+            cursor: pointer;
+        }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>volvo-bifrost: Volvo login</h1>
+
+    <section id="success" hidden>
+        <p>Volvo login worked. Paste this code into volvo-bifrost within a few minutes. It only works once.</p>
+        <div class="code">
+            <output id="code"></output>
+            <button id="copy" type="button">Copy</button>
+        </div>
+        <p class="muted">This page doesn't send the code anywhere.</p>
+    </section>
+
+    <section id="failure" hidden>
+        <p class="error">Volvo login failed: <strong id="error"></strong></p>
+        <p id="error-description"></p>
+        <p>Start the login again from volvo-bifrost.</p>
+    </section>
+
+    <section id="empty" hidden>
+        <p>This page receives the login code after signing in to Volvo for volvo-bifrost. There's nothing to show without one.</p>
+    </section>
+
+    <noscript>
+        <p>JavaScript is off. Copy the <code>code=</code> value from the address bar instead.</p>
+    </noscript>
+</main>
+<script>
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var code = params.get('code');
+        var error = params.get('error');
+
+        // Drop the one-time code from the address bar and browser history; it's shown on the page instead.
+        if (window.location.search) {
+            history.replaceState(null, '', window.location.pathname);
+        }
+
+        if (error) {
+            document.getElementById('error').textContent = error;
+            document.getElementById('error-description').textContent = params.get('error_description') || '';
+            document.getElementById('failure').hidden = false;
+            return;
+        }
+
+        if (!code) {
+            document.getElementById('empty').hidden = false;
+            return;
+        }
+
+        var output = document.getElementById('code');
+        var button = document.getElementById('copy');
+        output.textContent = code;
+        document.getElementById('success').hidden = false;
+
+        button.addEventListener('click', function () {
+            var selectCode = function () {
+                var range = document.createRange();
+                range.selectNodeContents(output);
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                button.textContent = 'Selected, press Cmd+C';
+            };
+            if (!navigator.clipboard) {
+                selectCode();
+                return;
+            }
+            navigator.clipboard.writeText(code).then(function () {
+                button.textContent = 'Copied';
+            }, selectCode);
+        });
+    })();
+</script>
+</body>
+</html>
